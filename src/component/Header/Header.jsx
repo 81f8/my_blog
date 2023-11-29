@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Container } from "../container/container";
+import { Container } from "../Container/Container";
 import styles from "./Header.module.css";
 
 export const Header = () => {
