@@ -23,7 +23,7 @@
   }
 
   .admin a:hover{
-    color: #000000; /* Set the text color */
-    text-shadow: 0 0 10px #3c3c3c, 0 0 20px #3c3c3c, 0 0 30px #3c3c3c; /* Add multiple shadows for the glowing effect */
+    color: #000000;
+    text-shadow: 0 0 10px #3c3c3c, 0 0 20px #3c3c3c, 0 0 30px #3c3c3c;
   }
 
