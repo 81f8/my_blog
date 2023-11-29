@@ -27,6 +27,15 @@
   margin-top: 200px;
 }
 
+.cover .overlay .title h1{
+  font-size: 50px;
+  margin-bottom: 4px;
+}
+
+.cover .overlay .title p {
+font-size: 34px;
+}
+
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
   .grid {
