@@ -61,7 +61,9 @@ export default function Home() {
           >
             <div className={styles.grid}>
               {list.map((blog, i) => (
-                <Card key={i} blog={blog} />
+                <div className={styles.grid_item} key={i}>
+                  <Card key={i} blog={blog} />
+                </div>
               ))}
             </div>
           </InfiniteScroll>

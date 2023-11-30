@@ -7,7 +7,7 @@ export const Card = ({ blog }) => {
   return (
     <div className={style.card}>
       <div className={style.img}>
-        <Image src={blog.photo_url} alt={blog.title} fill='true'/>
+        <Image src={blog.photo_url} alt={blog.title} fill='true' objectFit='cover' />
       </div>
       <p className={style.title}>{blog.title}</p>
       <p className={style.subtitle}>{blog.description}</p>
