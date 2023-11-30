@@ -5,20 +5,27 @@ import styles from "./page.module.css";
 import { Card } from "@/component/Card/Card";
 import { Footer } from "@/component/Footer/Footer";
 import { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import LinearProgress from "@mui/material/LinearProgress";
 
 export default function Home() {
   const [list, setList] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
 
-  const fetchblogs = async () => {
-    const res =
-      await fetch(`https://api.slingacademy.com/v1/sample-data/blog-posts?offset=0&limit=10
-    `);
+  const fetchBlogs = async (offset = 0) => {
+    const res = await fetch(
+      `https://api.slingacademy.com/v1/sample-data/blog-posts?offset=${offset}&limit=10`
+    );
     const data = await res.json();
-    setList(data.blogs);
+    if (data.blogs.length === 0) {
+      setHasMore(false);
+    } else {
+      setList((prevBlogs) => [...prevBlogs, ...data.blogs]);
+    }
   };
 
   useEffect(() => {
-    fetchblogs();
+    fetchBlogs();
   }, []);
 
   return (
@@ -35,10 +42,29 @@ export default function Home() {
         </div>
       </div>
       <Container>
-        <div className={styles.grid}>
-          {list.map((blog, i) => (
-            <Card key={i} blog={blog} />
-          ))}
+        <div className={styles.scroller}>
+          <InfiniteScroll
+            dataLength={list.length}
+            next={() => fetchBlogs(list.length)}
+            hasMore={hasMore}
+            loader={
+              <div className={styles.loader}>
+                <LinearProgress />
+                <LinearProgress />
+              </div>
+            }
+            endMessage={
+              <p style={{ textAlign: "center" }}>
+                <b>no more blogs</b>
+              </p>
+            }
+          >
+            <div className={styles.grid}>
+              {list.map((blog, i) => (
+                <Card key={i} blog={blog} />
+              ))}
+            </div>
+          </InfiniteScroll>
         </div>
       </Container>
       <Footer />

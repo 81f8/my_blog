@@ -38,12 +38,23 @@ font-size: 34px;
 
 
 .grid{
-  margin-top: -60px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px 28px;
   position: relative;
   padding-bottom: 60px;
+}
+
+.loader{
+  padding: 100px;
+  
+}
+
+.scroller{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: -60px;
 }
 
 /* Tablet and Smaller Desktop */
