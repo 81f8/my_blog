@@ -1,11 +1,26 @@
+"use client";
 import Container from "@/component/Container/Container";
 import Header from "@/component/Header/Header";
 import styles from "./page.module.css";
 import { Card } from "@/component/Card/Card";
-
-const list = [{}, {}, {}, {}, {}, {}];
+import { Footer } from "@/component/Footer/Footer";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [list, setList] = useState([]);
+
+  const fetchblogs = async () => {
+    const res =
+      await fetch(`https://api.slingacademy.com/v1/sample-data/blog-posts?offset=0&limit=10
+    `);
+    const data = await res.json();
+    setList(data.blogs);
+  };
+
+  useEffect(() => {
+    fetchblogs();
+  }, []);
+
   return (
     <>
       <Header />
@@ -20,10 +35,13 @@ export default function Home() {
         </div>
       </div>
       <Container>
-        {list.map((item, i) => (
-          <Card />
-        ))}
+        <div className={styles.grid}>
+          {list.map((blog, i) => (
+            <Card key={i} blog={blog} />
+          ))}
+        </div>
       </Container>
+      <Footer />
     </>
   );
 }

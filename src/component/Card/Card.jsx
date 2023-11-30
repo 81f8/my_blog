@@ -1,16 +1,19 @@
 import Link from "next/link";
 import style from "./Card.module.css";
+import Image from "next/image";
+import dayjs from "dayjs";
 
-export const Card = () => {
+export const Card = ({ blog }) => {
   return (
     <div className={style.card}>
       <div className={style.img}>
-        <p className={style.title}>FIRST BLOG TITL...</p>
-        <p className={style.subtitle}> By Aon 2034</p>
-        <div className={style.footer}>
-            <Link href={"/"}>Read Article</Link>
-            <span>June 19,2020</span>
-        </div>
+        <Image src={blog.photo_url} alt={blog.title} fill='true'/>
+      </div>
+      <p className={style.title}>{blog.title}</p>
+      <p className={style.subtitle}>{blog.description}</p>
+      <div className={style.footer}>
+        <Link href={"/"}>Read Article</Link>
+        <span>{dayjs(blog.created_at).format('MMMM D, YYYY')}</span>
       </div>
     </div>
   );
