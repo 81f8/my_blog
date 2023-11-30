@@ -12,7 +12,7 @@ export const Card = ({ blog }) => {
       <p className={style.title}>{blog.title}</p>
       <p className={style.subtitle}>{blog.description}</p>
       <div className={style.footer}>
-        <Link href={"/"}>Read Article</Link>
+        <Link href={`/article/${blog.id}`}>Read Article</Link>
         <span>{dayjs(blog.created_at).format('MMMM D, YYYY')}</span>
       </div>
     </div>
